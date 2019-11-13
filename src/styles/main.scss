@@ -12,18 +12,13 @@
 
 @import './components/form/form';
 @import './components/form/input';
+@import './components/form/select';
+@import './components/form/checkbox';
 
 @import './components/app_loading';
 
 @import '../pages/Dashboard/Dashboard';
-@import '../pages/Candidate/Candidate';
+@import '../pages/CustomerDetails/CustomerDetails';
 
 @import '../components/AppFrame/AppFrame';
 @import '../components/AppMenu/AppMenu';
-
-@import '../core/components/Forms/ButtonGroup/ButtonGroup';
-@import '../core/components/Forms/Dropdown/Dropdown';
-@import '../core/components/Forms/FormGroup/FormGroup';
-@import '../core/components/Forms/FormSection/FormSection';
-@import '../core/components/Forms/NumberSelector/NumberSelector';
-@import '../core/components/Forms/TextInput/TextInput';

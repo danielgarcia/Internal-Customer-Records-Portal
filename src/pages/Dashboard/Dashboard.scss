@@ -1,10 +1,25 @@
 .dashboard-page {
+    padding-top: 20px;
+
+    h2 {
+        font-size: 25px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: $covr-color;
+    }
 
     .left-block {
         display: block;
         padding: 20px;
         float: left;
         width: 400px;
+
+        .search-block {
+            background: $white;
+            padding: 20px;
+            border-bottom: 1px solid #e5e9ec;
+            box-shadow: 0px 1px 1px lightgrey;
+        }
     }
 
     .right-block {
@@ -14,9 +29,61 @@
         width: calc(100% - 400px);
 
         .results {
-            li {
+            .customer {
+                display: block;
                 background: white;
                 margin-bottom: 10px;
+                background: $white;
+                padding: 20px;
+                border: 1px solid transparent;
+                border-bottom: 1px solid #e5e9ec;
+                box-shadow: 0px 1px 1px lightgrey;
+                transition: border-color $fast;
+
+                &:hover {
+                    border-color: $covr-color;
+                }
+
+                .name {
+                    color: $covr-color;
+                    font-size: 18px;
+                }
+
+                .accounts,
+                .vip,
+                .history {
+                    display: inline-block;
+                    width: 33.33%;
+                    margin-top: 20px;
+
+                    span {
+                        color: $covr-color;
+                    }
+                }
+            }
+        }
+
+        .pagination {
+            li {
+                background: $white;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                border: 1px solid lightgray;
+                transition: border-color $fast;
+                cursor: pointer;
+                user-select: none;
+
+                &:hover {
+                    border-color: $covr-color;
+                }
+
+                &.active {
+                    border-color: $covr-color;
+                    cursor: default;
+                }
             }
         }
     }

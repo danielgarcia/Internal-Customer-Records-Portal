@@ -23,24 +23,28 @@ export interface IName {
     last: string;
 }
 
-export interface ICandidate {
+export interface ICustomer {
     id: string;
     name: IName;
     verficationFlowHistory: IVerficationFlowHistory[];
     customClaims: ICustomClaims;
     linkedFinancialInstitutions: IInstitutions[];
     managedClaims: IManagedClaims;
+    nextPaymentDate: string;
 }
 
-class Candidate {
-    public constructor(candidate?: ICandidate) {
-        if (candidate) {
-            this.id = candidate.id;
-            this.name = candidate.name;
-            this.verficationFlowHistory = candidate.verficationFlowHistory;
-            this.customClaims = candidate.customClaims;
-            this.linkedFinancialInstitutions = candidate.linkedFinancialInstitutions;
-            this.managedClaims = candidate.managedClaims;
+class Customer {
+    public constructor(customer?: ICustomer) {
+        if (customer) {
+            this.id = customer.id;
+            this.name = customer.name;
+            this.verficationFlowHistory = customer.verficationFlowHistory;
+            this.customClaims = customer.customClaims;
+            this.linkedFinancialInstitutions = customer.linkedFinancialInstitutions;
+            if (typeof customer.managedClaims.vip !== 'undefined') {
+                this.managedClaims = customer.managedClaims;
+            }
+            this.nextPaymentDate = customer.nextPaymentDate;
         }
     }
 
@@ -50,6 +54,7 @@ class Candidate {
     public customClaims = { paymentHistory: '' };
     public linkedFinancialInstitutions: IInstitutions[] = [];
     public managedClaims = { vip: false };
+    public nextPaymentDate = '';
 }
 
-export { Candidate };
+export { Customer };

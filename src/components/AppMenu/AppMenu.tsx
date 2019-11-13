@@ -8,7 +8,7 @@ class AppMenu extends React.Component<{}> {
         return (
             <div className="app-menu">
                 <ul className="nav-list">
-                    <li className="logo" title="Covr"><img src="./images/COVR-White.png" /></li>
+                    <li className="logo" title="Covr"><img src="/images/COVR-White.png" alt="Covr" /></li>
                     <li><Link to={routes.Dashboard.route}>Dashboard</Link></li>
                 </ul>
             </div>

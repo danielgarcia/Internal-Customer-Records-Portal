@@ -1,0 +1,55 @@
+select {
+    appearance: none;
+    outline: none;
+    font-size: 18px;
+    color: $black;
+    background: $white;
+    margin-bottom: 5px;
+    width: 100%;
+    font-weight: 500;
+    height: $select-height;
+    padding: 0 20px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    cursor: pointer;
+    background: $white;
+    transition: border-color $fast;
+    background-image: url('/images/caret-down-black.png');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
+
+    &:hover,
+    &:focus {
+        border-color: #9d9d9d;
+    }
+
+    &.error {
+        border-color: $red;
+        background: rgba(192, 70, 70, 0.1);
+    }
+
+    &.error {
+        border-color: $red;
+        background: rgba(192, 70, 70, 0.1);
+    }
+
+    &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #bcbcbc;
+    }
+
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #bcbcbc;
+    }
+
+    &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: #bcbcbc;
+    }
+
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        color: #bcbcbc;
+    }
+}

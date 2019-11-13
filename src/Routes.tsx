@@ -5,29 +5,27 @@ import history from './core/history';
 import AppFrame from './components/AppFrame/AppFrame';
 
 import Dashboard from './pages/Dashboard/Dashboard';
-import Candidate from './pages/Candidate/Candidate';
+import CustomerDetails from './pages/CustomerDetails/CustomerDetails';
 
 /**
  * Application routes.
  */
 const routes = {
     Dashboard: { route: '/' },
-    Candidate: { route: '/candidate' },
+    CustomerDetails: { route: '/customer/:customerID', go: (id: string): string => `/customer/${id}` },
 };
 
 class Routes extends React.Component {
     public render(): JSX.Element {
         return (
             <Router history={history}>
-                <Route exact path="/">
-                    <AppFrame>
-                        <Switch>
-                            <Route exact path={routes.Dashboard.route} component={Dashboard} />
-                            <Route exact path={routes.Candidate.route} component={Candidate} />
-                            <Redirect from='*' to={routes.Dashboard.route} />
-                        </Switch>
-                    </AppFrame>
-                </Route>
+                <AppFrame>
+                    <Switch>
+                        <Route exact path={routes.Dashboard.route} component={Dashboard} />
+                        <Route exact path={routes.CustomerDetails.route} component={CustomerDetails} />
+                        <Redirect from='*' to={routes.Dashboard.route} />
+                    </Switch>
+                </AppFrame>
             </Router>
         );
     }
