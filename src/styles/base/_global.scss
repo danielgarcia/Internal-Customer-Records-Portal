@@ -1,0 +1,98 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: $sans;
+    letter-spacing: 0.25px;
+    background: $background-color;
+    font-weight: 400;
+    color: $black;
+    font-size: 13px;
+}
+
+#typescript-app,
+.app-layout {
+    height: 100%;
+    width: 100%;
+}
+
+#typescript-app {
+    opacity: 1 !important;
+    transition: opacity 1s;
+}
+
+.clear:before,
+.clear:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.clear:after {
+    clear: both;
+}
+
+/**
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.clear {
+    *zoom: 1;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+strong {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: $black;
+    transition: color $fast;
+
+    &:hover {
+        color: $off-black;
+    }
+}
+
+.link {
+    color: $blue;
+    cursor: pointer;
+
+    &:hover {
+        color: darken($blue, 5%);
+        text-decoration: underline;
+    }
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-header {
+    font-size: 30px;
+    font-weight: 100;
+    color: $black;
+    text-shadow: 0 1px 0 rgba(52, 96, 161, 0.2);
+    padding: 0 0 30px;
+}

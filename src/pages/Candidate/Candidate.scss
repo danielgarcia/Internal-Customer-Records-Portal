@@ -1,0 +1,23 @@
+.dashboard-page {
+
+    .left-block {
+        display: block;
+        padding: 20px;
+        float: left;
+        width: 400px;
+    }
+
+    .right-block {
+        display: block;
+        padding: 20px;
+        float: right;
+        width: calc(100% - 400px);
+
+        .results {
+            li {
+                background: white;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

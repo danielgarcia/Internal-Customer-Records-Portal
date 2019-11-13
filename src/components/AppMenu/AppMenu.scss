@@ -1,0 +1,53 @@
+.app-menu {
+  position: fixed;
+  padding: 0 10px;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: $app-menu-height;
+  z-index: 10;
+  background: $covr-color;
+  color: $off-white;
+
+  a {
+    color: $off-white;
+  }
+
+  .nav-list {
+    text-align: left;
+
+    a {
+      background: transparent;
+      font-size: 16px;
+      height: $app-menu-height;
+      line-height: $app-menu-height;
+      display: inline-block;
+      text-align: center;
+      padding: 0 20px;
+      transition: background $fast, color $fast;
+
+      &.active,
+      &:hover {
+        background: #fff;
+        color: $covr-color;
+
+      }
+    }
+
+    .logo {
+      position: relative;
+      line-height: $app-menu-height;
+      margin-right: 10px;
+
+      img {
+        height: $app-menu-height;
+      }
+    }
+
+    li {
+      float: left;
+      display: block;
+    }
+  }
+}

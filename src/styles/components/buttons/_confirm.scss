@@ -1,0 +1,77 @@
+button.button-confirm,
+a.button-confirm {
+    outline: none;
+    color: $white;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: 600;
+    background: $dark-blue;
+    display: inline-block;
+    border: 2px solid transparent;
+    text-shadow: 0 2px 0 darken($dark-blue, 10%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    transition: border-color $fast, background $fast, box-shadow $fast, opacity $fast;
+
+    &:hover {
+        border-color: $dark-blue;
+        background: darken($dark-blue, 5%);
+    }
+
+    &:active {
+        box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    &:disabled,
+    &[disabled] {
+        border-bottom: 1px solid darken($dark-blue, 5%);
+        background: $dark-blue;
+        opacity: 0.65;
+        cursor: not-allowed;
+    }
+
+    &.creating,
+    &.sending,
+    &.updating,
+    &.deleting,
+    &.checking {
+        color: transparent;
+        text-shadow: none;
+
+        &:before {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            color: white;
+            left: 0;
+            top: 0;
+            text-shadow: 0 2px 0 darken($dark-blue, 10%);
+        }
+
+        &.creating:before {
+            content: 'Creating...';
+        }
+
+        &.sending:before {
+            content: 'Sending...';
+        }
+
+        &.updating:before {
+            content: 'Updating...';
+        }
+
+        &.deleting:before {
+            content: 'Deleting...';
+        }
+
+        &.checking:before {
+            content: 'Checking...';
+        }
+    }
+}

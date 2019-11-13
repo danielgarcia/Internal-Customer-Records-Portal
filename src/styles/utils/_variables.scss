@@ -1,0 +1,60 @@
+/* Dimensions */
+$site-width: 1024px;
+$header-height: 50px;
+$appMenu-width: 200px;
+$app-menu-height: 60px;
+
+/* Inputs */
+$input-height: 50px;
+$button-height: 50px;
+$select-height: 50px;
+
+/* Font Names */
+$sans: "Metropolis",
+"sans-serif",
+"Helvetica",
+"Arial";
+$serif: "Bitter",
+"serif";
+$script: "script";
+
+/* Z-Index */
+$level1: 1;
+$level2: 2;
+$level3: 3;
+$level4: 4;
+$level5: 5;
+
+/* Speeds */
+$quick: .1s;
+$fast: .25s;
+$average: .4s;
+$slow: .65s;
+$slower: 1s;
+$appMenu-open-speed: .4s; // speed when opening the main menu
+
+
+/* Breakpoints */
+$mobile: 768px;
+$tablet: 992px;
+$desktop: 1200px;
+
+/* Global Colors */
+$black: #333;
+$off-black: #4a5358;
+$white: #ffffff;
+$off-white: #f6f9fa;
+$background-color: #f2f5f8;
+
+$grey: #d4d4d4;
+$off-grey: #eff1f4;
+$dark-grey: #58656c;
+$light-blue: #1496f1;
+$blue: #137DBB;
+$dark-blue: #18617e;
+$green: #18b65c;
+$red: #d73956;
+$lightgrey: lightgrey;
+$yellow: #feb61c;
+
+$covr-color: #CE4F70;

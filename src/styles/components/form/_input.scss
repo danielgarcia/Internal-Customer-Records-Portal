@@ -1,0 +1,55 @@
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'] {
+    appearance: none;
+    outline: none;
+    color: $black;
+    background: $white;
+    height: $input-height;
+    line-height: $input-height;
+    padding: 0 20px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-size: 18px;
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    font-weight: 500;
+    transition: border-color $fast, background $fast;
+
+    &:hover,
+    &:focus {
+        border-color: #9d9d9d;
+    }
+
+    &.error {
+        border-color: $red;
+        background: rgba(192, 70, 70, 0.1);
+    }
+
+    &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #bcbcbc;
+    }
+
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #bcbcbc;
+    }
+
+    &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: #bcbcbc;
+    }
+
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        color: #bcbcbc;
+    }
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
