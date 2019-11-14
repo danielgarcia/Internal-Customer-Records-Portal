@@ -1,1 +1,10 @@
-.not-found-page {}
+.not-found-page {
+
+    p {
+        font-size: 100px;
+        text-align: center;
+        margin: 100px;
+        color: $covr-color;
+    }
+
+}
