@@ -2,17 +2,25 @@
 
 An application to manage a list of customers with financial data written in React using TypeScript.
 
-## On mac or linux you can run this local by doing the following:
-1. Install git
-2. Open a terminal
-3. Run: git clone https://github.com/danielgarcia/Internal-Customer-Records-Portal
-4. cd Internal-Customer-Records-Portal
-5. Run: npm install
-6. Run: npm start
-7.  You are done, use http://localhost:3000/
+### On mac or linux you can run this local by doing the following:
+1. Install Node
+2. Install git
+3. Open a terminal and run:
+```
+$ git clone https://github.com/danielgarcia/Internal-Customer-Records-Portal
+$ cd Internal-Customer-Records-Portal
+$ npm install
+```
 
-## To stop the service
-1. Ctrl+C on the terminal.
+### To run the App
+```
+$ npm start
+```
+
+### To build the App
+```
+$ npm run build
+```
 
 ## Screenshots
 
