@@ -1,5 +1,6 @@
-import { Customer, ICustomer } from '../core/Customer';
-import outsideData from '../customers.json';
+import { Customer } from '../core/Customer';
+
+import customersStore from '../model/customers';
 
 export interface IFilter {
     paymentHistory?: string;
@@ -14,7 +15,7 @@ export interface IFilter {
  */
 const getCustomers = (page: number = 1, count: number = 20, filter: IFilter): { customers: Customer[], total: number, page: number, count: number } => {
     const customers: Customer[] = [];
-    let customersData = outsideData as ICustomer[];
+    let customersData = customersStore.getAll();
     let total = 0;
 
     // Filter out by name

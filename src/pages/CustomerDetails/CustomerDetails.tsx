@@ -1,11 +1,12 @@
 import * as React from 'react';
 import moment from 'moment';
 
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { routes } from '../../Routes';
 
 import { Customer } from '../../core/Customer';
 import { getCustomer } from '../../usecases/getCustomer';
+import { setCustomClaim } from '../../usecases/setCustomClaim';
 import { paymentHistoryMap } from '../../core/constants';
 
 interface Params {
@@ -31,16 +32,22 @@ class CustomerDetails extends React.Component<RouteComponentProps<Params>, Custo
 
     public componentDidMount(): void {
         const { customerID } = this.props.match.params;
-        const { customer } = getCustomer(customerID);
+        const customer = getCustomer(customerID);
+        if (!customer) {
+            this.props.history.push(routes.NotFound.route);
+            return;
+        }
         this.setState({ customer });
     }
 
     public onSelectChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         let { customer } = this.state;
-        console.log(event.target.value);
-        // filter.paymentHistory = event.target.value === '' ? undefined : event.target.value;
-        // this.setState({ ...this.state, filter, searched: true });
-        // this.fetchCustomers(1, filter);
+        const selectedValue = event.target.value;
+
+        if (setCustomClaim(customer.id, selectedValue)) {
+            customer.customClaims.paymentHistory = selectedValue;
+            this.setState({ customer });
+        }
     }
 
     /**
@@ -141,12 +148,9 @@ class CustomerDetails extends React.Component<RouteComponentProps<Params>, Custo
 
     public render(): JSX.Element {
         const { customer } = this.state;
+        console.log(customer)
         return (
             <div className="customer-page">
-                <div className="customer-name">
-                    <Link to={routes.Dashboard.route} className="goBack"> <i className="fa fa-angle-left" /> Go Back to Dashboard</Link>
-                </div>
-
                 <div className="left-block">
                     <h2>Customer Information</h2>
                     <div className="customer-block">

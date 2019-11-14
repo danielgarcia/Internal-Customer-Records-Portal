@@ -1,14 +1,15 @@
-import { Customer, ICustomer } from '../core/Customer';
-import outsideData from '../customers.json';
+import { Customer } from '../core/Customer';
+
+import customersStore from '../model/customers';
 
 /**
  * Get the customers list.
  * @returns {{ customer: Customer }} .
  */
-const getCustomer = (id: string): { customer: Customer } => {
-    const customer = outsideData.find((customer) => customer.id === id) as ICustomer;
+const getCustomer = (id: string): Customer | null => {
+    const customer = customersStore.getCustomer(id);
 
-    return { customer: new Customer(customer) };
+    return customer;
 };
 
 export { getCustomer };

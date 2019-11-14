@@ -4,7 +4,6 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { routes } from '../../Routes';
 import { getCustomers, IFilter } from '../../usecases/getCustomers';
 import { Customer } from '../../core/Customer';
-
 import { paymentHistoryMap } from '../../core/constants';
 
 interface DashboardState {
@@ -15,7 +14,6 @@ interface DashboardState {
     filter: IFilter;
     searched: boolean;
 }
-
 
 class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
     public constructor(props: RouteComponentProps) {
