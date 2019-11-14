@@ -9,7 +9,6 @@ import { paymentHistoryMap } from '../../core/constants';
 
 interface DashboardState {
     customers: Customer[];
-    loading: boolean;
     total: number;
     count: number;
     page: number;
@@ -32,7 +31,6 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
      */
     public readonly state: Readonly<DashboardState> = {
         customers: [],
-        loading: false,
         total: 0,
         count: 20,
         page: 1,
@@ -46,40 +44,56 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
     };
 
     public componentDidMount(): void {
-        this.fetchCustomers(this.state.page, this.state.filter);
+        this.fetchCustomers();
     }
 
-    private goToPage(newPage: number): void {
-        this.fetchCustomers(newPage, this.state.filter);
+    /**
+     * Triggers a change in the page of the content.
+     * @param {number} newPage index value to find the page for the data.
+     * @returns {void}
+     */
+    private goToPage(page: number): void {
+        this.setState({ page }, () => this.fetchCustomers());
     }
 
-    private fetchCustomers(page: number, filter: IFilter): void {
-        this.setState({ loading: true });
-        const { customers, total, count } = getCustomers(page, this.state.count, filter);
-        this.setState({ customers, loading: false, total, page, count });
+    /**
+     * Fetches the customers of a specific page.
+     */
+    private fetchCustomers(): void {
+        const { customers, total, page, count } = getCustomers(this.state.page, this.state.count, this.state.filter);
+        this.setState({ customers, total, page, count });
     }
 
+    /**
+     * Handles the Number input onChange
+     */
     public onNumberChange(event: React.ChangeEvent<HTMLInputElement>): void {
         let { filter } = this.state;
         filter.linkedAccounts = event.target.value === '' ? undefined : Number(event.target.value);
-        this.setState({ filter, searched: true });
-        this.fetchCustomers(1, filter);
+        this.setState({ filter, searched: true, page: 1 }, () => this.fetchCustomers());
     }
 
+    /**
+     * Handles the String input onChange
+     */
     public onStringChange(event: React.ChangeEvent<HTMLInputElement>): void {
         let { filter } = this.state;
         filter.name = event.target.value;
-        this.setState({ filter, searched: true });
-        this.fetchCustomers(1, filter);
+        this.setState({ filter, searched: true, page: 1 }, () => this.fetchCustomers());
     }
 
+    /**
+     * Handles the Select onChange
+     */
     public onSelectChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         let { filter } = this.state;
         filter.paymentHistory = event.target.value === '' ? undefined : event.target.value;
-        this.setState({ ...this.state, filter, searched: true });
-        this.fetchCustomers(1, filter);
+        this.setState({ filter, searched: true, page: 1 }, () => this.fetchCustomers());
     }
 
+    /**
+     * Handles the Checkbox onChange
+     */
     private onCheckboxChange(value: string): void {
         let { filter } = this.state;
         if (typeof filter.vip === 'undefined') {
@@ -89,29 +103,40 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
         } else {
             filter.vip = filter.vip ? false : undefined;
         }
-        this.setState({ ...this.state, filter, searched: true });
-        this.fetchCustomers(1, filter);
+        this.setState({ filter, searched: true, page: 1 }, () => this.fetchCustomers());
     }
 
+    /**
+     * Renders the Customer List
+     */
     private renderCustomers(): JSX.Element {
         if (this.state.searched && !this.state.customers.length) {
             return <div className="results">No Customers Found</div>;
         }
 
         const CustomerList = this.state.customers.map(
-            (customer, index): JSX.Element => (
-                <Link to={routes.CustomerDetails.go(customer.id)} className="customer" key={index}>
-                    <div className="name">{`${customer.name.first} ${customer.name.last}`} </div>
-                    <div className="accounts">Number of linked bank accounts: <span>{customer.linkedFinancialInstitutions.length}</span></div>
-                    <div className="vip">VIP: <span>{customer.managedClaims.vip ? 'YES' : 'NO'}</span></div>
-                    <div className="history">Payment History: <span>{customer.verficationFlowHistory.length}</span></div>
-                </Link>
-            ),
-        );
+            (customer, index): JSX.Element => {
+                let lastVerification: JSX.Element = <>Not Verified</>;
+                const historyLength = customer.verficationFlowHistory.length;
+                if (historyLength) {
+                    lastVerification = <span className={`verification ${customer.verficationFlowHistory[historyLength - 1].state}`} >{customer.verficationFlowHistory[historyLength - 1].state.split('_').join(' ')}</span>;
+                }
+
+                return (
+                    <Link to={routes.CustomerDetails.go(customer.id)} className="customer" key={index}>
+                        <div className="name">{`${customer.name.first} ${customer.name.last}`} {customer.managedClaims.vip ? (<div className="vip-badge"><span>VIP</span><i className="fa fa-certificate" /></div>) : null}</div>
+                        <div className="history">Last Verification: {lastVerification}</div>
+                        <div className="accounts">Linked Bank Accounts: <span>{customer.linkedFinancialInstitutions.length}</span></div>
+                    </Link>
+                );
+            });
 
         return <div className="results">{CustomerList}</div>;
     }
 
+    /**
+     * Renders the Pagination
+     */
     private renderPagination(): JSX.Element {
         const { total, page, count } = this.state;
         const pagination: JSX.Element[] = [];
@@ -123,12 +148,11 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
     }
 
     public render(): JSX.Element {
-        console.log(this.state);
+        const options: JSX.Element[] = [];
+        paymentHistoryMap.forEach((value, key): void => {
+            options.push(<option key={key} value={value}>{value.split('_').join(' ')}</option>);
+        });
 
-        const pagination: JSX.Element[] = [];
-        paymentHistoryMap.forEach((value, index): void => {
-            pagination.push(<option key={index} value={value}>{value.split('_').join(' ')}</option>)
-        })
         return (
             <div className="dashboard-page">
 
@@ -182,9 +206,9 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
                         </div>
                         <div className="form-block">
                             <label>Payment History</label>
-                            <select name="" id="" onChange={this.onSelectChange}>
+                            <select onChange={this.onSelectChange}>
                                 <option value="">Status</option>
-                                {pagination}
+                                {options}
                             </select>
                         </div>
                     </div>
@@ -193,10 +217,8 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
                 <div className="right-block">
                     <h2>Results</h2>
                     {this.renderCustomers()}
-
                     {this.renderPagination()}
                 </div>
-
             </div>
         );
     }

@@ -6,10 +6,7 @@ import outsideData from '../customers.json';
  * @returns {{ customer: Customer }} .
  */
 const getCustomer = (id: string): { customer: Customer } => {
-
-    const customer = outsideData.find(function (customer) {
-        return customer.id === id;
-    }) as ICustomer;
+    const customer = outsideData.find((customer) => customer.id === id) as ICustomer;
 
     return { customer: new Customer(customer) };
 };

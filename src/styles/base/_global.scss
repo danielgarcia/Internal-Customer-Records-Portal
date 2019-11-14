@@ -89,10 +89,38 @@ a {
     text-overflow: ellipsis;
 }
 
+.center {
+    text-align: center;
+}
+
 .page-header {
     font-size: 30px;
     font-weight: 100;
     color: $black;
     text-shadow: 0 1px 0 rgba(52, 96, 161, 0.2);
     padding: 0 0 30px;
+}
+
+.vip-badge {
+    display: inline-block;
+    width: 26px;
+    height: 30px;
+    position: relative;
+    text-align: center;
+
+    i {
+        color: $covr-color;
+        font-size: 30px;
+    }
+
+    span {
+        color: $white;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        line-height: 30px;
+        text-align: center;
+        font-size: 8px;
+        top: 1px;
+    }
 }

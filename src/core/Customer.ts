@@ -33,6 +33,10 @@ export interface ICustomer {
     nextPaymentDate: string;
 }
 
+/*
+ * This class is to normalized the customer data to ensure data integrity because of javascript dynamic types.
+ * Typescript does not perform any useful checking at runtime only at compiled time.
+ */
 class Customer {
     public constructor(customer?: ICustomer) {
         if (customer) {

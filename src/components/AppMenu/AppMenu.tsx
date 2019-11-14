@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { routes } from '../../Routes';
 
 class AppMenu extends React.Component<{}> {
@@ -9,7 +9,7 @@ class AppMenu extends React.Component<{}> {
             <div className="app-menu">
                 <ul className="nav-list">
                     <li className="logo" title="Covr"><img src="/images/COVR-White.png" alt="Covr" /></li>
-                    <li><Link to={routes.Dashboard.route}>Dashboard</Link></li>
+                    <li><NavLink exact to={routes.Dashboard.route}>Dashboard</NavLink></li>
                 </ul>
             </div>
         );
