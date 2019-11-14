@@ -1,5 +1,3 @@
-import { Customer, ICustomer } from '../core/Customer';
-
 import customersStore from '../model/customers';
 
 /**
