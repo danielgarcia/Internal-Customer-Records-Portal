@@ -44,6 +44,10 @@
                 overflow: auto;
                 border: 20px solid $white;
                 box-shadow: 0px 1px 1px lightgrey;
+
+                .vip-badge span {
+                    top: 0;
+                }
             }
         }
     }

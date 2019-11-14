@@ -155,7 +155,7 @@ class CustomerDetails extends React.Component<RouteComponentProps<Params>, Custo
                     <h2>Customer Information</h2>
                     <div className="customer-block">
                         <div className="name">
-                            {customer.name.first} {customer.name.last} {customer.managedClaims.vip ? (<div className="vip-badge"><span>VIP</span><i className="fa fa-certificate" /></div>) : null}
+                            {customer.name.first} {customer.name.last} {customer.managedClaims.vip ? (<div className="vip-badge"><span>VIP</span><i className="fas fa-certificate" /></div>) : null}
                         </div>
 
                         {this.renderCustomClaims()}

@@ -122,7 +122,7 @@ class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
 
                 return (
                     <Link to={routes.CustomerDetails.go(customer.id)} className="customer" key={index}>
-                        <div className="name">{`${customer.name.first} ${customer.name.last}`} {customer.managedClaims.vip ? (<div className="vip-badge"><span>VIP</span><i className="fa fa-certificate" /></div>) : null}</div>
+                        <div className="name">{`${customer.name.first} ${customer.name.last}`} {customer.managedClaims.vip ? (<div className="vip-badge"><span>VIP</span><i className="fas fa-certificate" /></div>) : null}</div>
                         <div className="history">Last Verification: {lastVerification}</div>
                         <div className="accounts">Linked Bank Accounts: <span>{customer.linkedFinancialInstitutions.length}</span></div>
                     </Link>
